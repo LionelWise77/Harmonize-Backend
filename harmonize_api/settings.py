@@ -39,6 +39,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-lionelwise7-harmonizeba-p4p9ravs0w8.ws.codeinstitute-ide.net']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-lionelwise7-harmonizeba-p4p9ravs0w8.ws.codeinstitute-ide.net',
+    'http://8000-lionelwise7-harmonizeba-p4p9ravs0w8.ws.codeinstitute-ide.net',  
+]
+
 
 # Application definition
 
