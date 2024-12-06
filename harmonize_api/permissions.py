@@ -8,5 +8,5 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         if request.method in ['GET', 'HEAD', 'OPTIONS']:
             return True
         
-        # Solo permitir la modificación si el usuario es el propietario de la tarea
+        
         return obj.owner == request.user
