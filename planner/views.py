@@ -3,6 +3,12 @@ from .models import Task
 from .serializers import TaskSerializer
 from harmonize_api.permissions import IsOwnerOrReadOnly
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
+
+class TaskPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class TaskListCreateView(generics.ListCreateAPIView):
     
@@ -23,3 +29,8 @@ class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     def perform_update(self, serializer):
        
         serializer.save(owner=self.request.user)
+
+class TaskDetailView(generics.RetrieveAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
