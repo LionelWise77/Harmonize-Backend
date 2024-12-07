@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 
 class Task(models.Model):
@@ -23,7 +24,8 @@ class Task(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open') 
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks") 
     created_at = models.DateTimeField(auto_now_add=True)  
-    updated_at = models.DateTimeField(auto_now=True)  
+    updated_at = models.DateTimeField(auto_now=True)
+    attachment = CloudinaryField('attachment', blank=True, null=True) 
 
     class Meta:
         ordering = ['due_date', 'priority']
