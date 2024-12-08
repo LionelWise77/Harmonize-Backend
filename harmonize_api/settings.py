@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+
 if os.path.exists('env.py'):
     import env
 
@@ -26,6 +27,31 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )],
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DATETIME_FORMAT': '%d %b %Y',
+}
+if 'DEV' not in os.environ:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'harmonize_api.serializers.CurrentUserSerializer'
+}
 
 
 # Quick-start development settings - unsuitable for production
@@ -44,6 +70,9 @@ CSRF_TRUSTED_ORIGINS = [
     'http://8000-lionelwise7-harmonizeba-p4p9ravs0w8.ws.codeinstitute-ide.net',  
 ]
 
+LOGIN_REDIRECT_URL = '/api/tasks/'  # Cambia esta URL según la lógica de tu aplicación
+
+
 
 # Application definition
 
@@ -56,23 +85,18 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-    
-    'planner',
     'rest_framework',
     'django_filters',
+    'rest_framework.authtoken', 
+    'dj_rest_auth',
+    'django.contrib.sites',
+    
+
+    'planner',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        # Si usas JWT, descomenta la siguiente línea
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # Asegúrate de que los permisos por defecto sean los correctos.
-    ],
-}
 
+SITE_ID = 1
 
 
 MIDDLEWARE = [
@@ -83,7 +107,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
+
 
 ROOT_URLCONF = 'harmonize_api.urls'
 
@@ -115,6 +141,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
