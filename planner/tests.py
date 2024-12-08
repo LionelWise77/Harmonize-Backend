@@ -6,13 +6,13 @@ from django.test import TestCase
 
 class TaskViewTest(TestCase):
     def setUp(self):
-        # Crear un usuario
+        
         self.user = get_user_model().objects.create_user(
             username='testuser',
             password='testpassword'
         )
         
-        # Intentar iniciar sesión
+       
         login = self.client.login(username='testuser', password='testpassword')
         print(f"Login success: {login}")  
         
@@ -23,12 +23,12 @@ class TaskViewTest(TestCase):
         }
 
     def test_task_list(self):
-        # Verificar que se puede obtener la lista de tareas
+        
         response = self.client.get(reverse('task-list-create'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_task_creation(self):
-        # Probar la creación de una tarea
+        
         url = reverse('task-list-create')
         data = {
             'title': 'New Task',
@@ -36,7 +36,7 @@ class TaskViewTest(TestCase):
             'due_date': '2024-12-08',
             'priority': 'M',
             'status': 'open',
-            'owner': self.user.id,  # Asegúrate de incluir el 'owner' (usuario) aquí
+            'owner': self.user.id,  
         }
         response = self.client.post(url, data, format='json')
         print(response.data)
