@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 from .views import root_route
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 
 urlpatterns = [
@@ -24,7 +29,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('planner.urls')),
     path('accounts/profile/', RedirectView.as_view(url='/api/tasks/', permanent=True)),
-    path('', root_route)
+    path('', root_route),
+    
     
 
 ]
