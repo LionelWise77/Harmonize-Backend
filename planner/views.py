@@ -16,14 +16,17 @@ class TaskListCreateView(generics.ListCreateAPIView):
     
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, drf_filters.OrderingFilter]
     filterset_class = TaskFilter
     ordering_fields = ['due_date', 'priority', 'created_at']  
     ordering = ['due_date']
     
+    
     def perform_create(self, serializer):
         
         serializer.save(owner=self.request.user)
+
 
 
 class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
