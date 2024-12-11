@@ -66,7 +66,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['harmonize-backend-6405d8cae271.herokuapp.com','8000-lionelwise7-harmonizeba-p4p9ravs0w8.ws.codeinstitute-ide.net' ]
+ALLOWED_HOSTS = ['harmonize-backend-6405d8cae271.herokuapp.com','8000-lionelwise7-harmonizeba-ejchihmxc4o.ws.codeinstitute-ide.net' ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-lionelwise7-harmonizeba-p4p9ravs0w8.ws.codeinstitute-ide.net',
