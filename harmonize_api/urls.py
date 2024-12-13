@@ -17,19 +17,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 from .views import root_route, logout_route
-
-
-
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/logout/', logout_route),
     path('api/', include('planner.urls')),
     path('accounts/profile/', RedirectView.as_view(url='/api/tasks/', permanent=True)),
     path('', root_route),
     
     
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]
