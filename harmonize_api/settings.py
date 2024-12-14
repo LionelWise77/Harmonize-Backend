@@ -73,7 +73,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://8000-lionelwise7-harmonizeba-ejchihmxc4o.ws.codeinstitute-ide.net',  
 ]
 
-LOGIN_REDIRECT_URL = '/api/tasks/'  # Cambia esta URL según la lógica de tu aplicación
+LOGIN_REDIRECT_URL = '/api/tasks/'  
 
 
 
@@ -154,12 +154,12 @@ WSGI_APPLICATION = 'harmonize_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 if 'DEV' in os.environ:
      DATABASES = {
