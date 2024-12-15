@@ -70,7 +70,7 @@ ALLOWED_HOSTS = ['harmonize-backend-6405d8cae271.herokuapp.com','8000-lionelwise
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-lionelwise7-harmonizeba-ejchihmxc4o.ws.codeinstitute-ide.net',
-    'http://8000-lionelwise7-harmonizeba-ejchihmxc4o.ws.codeinstitute-ide.net',  
+    'https://8080-lionelwise7-harmonizefr-gcq0d99cqb3.ws.codeinstitute-ide.net',  
 ]
 
 LOGIN_REDIRECT_URL = '/api/tasks/'  
