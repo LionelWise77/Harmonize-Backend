@@ -1,39 +1,34 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import axios from "../api/axiosDefaults";
+import "../App.css";
 
 function Login({ setAuth }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("token/", { username, password })
+      .post("dj-rest-auth/login/", { username, password })
       .then((response) => {
         localStorage.setItem("access_token", response.data.access);
-        localStorage.setItem("refresh_token", response.data.refresh);
+        localStorage.setItem("username", response.data.user.username);
+        setUsername(response.data.user.username);
         setAuth(true);
-        history.push("/tasks"); // Redirige a la página de tareas
       })
-      .catch((err) => {
-        console.error(err);
-        setError("Invalid credentials. Please try again.");
-      });
+      .catch(() => setError("Invalid username or password."));
   };
 
   return (
     <div className="container mt-4">
-      <h1>Login</h1>
-      {error && <p className="text-danger">{error}</p>}
+      <h2 className="mb-3 text-center">Login</h2>
+      {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label>Username</label>
           <input
             type="text"
-            id="username"
             className="form-control"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -41,17 +36,16 @@ function Login({ setAuth }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label>Password</label>
           <input
             type="password"
-            id="password"
             className="form-control"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary w-100 mt-3">
           Login
         </button>
       </form>

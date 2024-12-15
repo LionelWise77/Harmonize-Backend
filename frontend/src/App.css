@@ -1,38 +1,74 @@
-.App {
+/* App.css */
+
+/* General Body Styles */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  margin-top: 2rem;
+}
+
+/* Header/NavBar */
+.navbar {
+  background-color: #863737 !important;
+}
+
+.navbar-brand,
+.nav-link {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.nav-link:hover {
+  color: #f8f9fa !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #bd2130;
+}
+
+/* Calendar and Tasks */
+.task-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #fff;
+}
+
+.task-card h5 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.task-card small {
+  color: #888;
+}
+
+.footer {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #007bff;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
