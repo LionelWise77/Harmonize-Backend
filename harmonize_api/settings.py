@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-import re
+
 
 
 if os.path.exists('env.py'):
@@ -64,9 +64,12 @@ REST_AUTH_SERIALIZERS = {
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
+DEBUG = 'DEBUG' in os.environ
 
-ALLOWED_HOSTS = ['harmonize-backend-6405d8cae271.herokuapp.com','8000-lionelwise7-harmonizeba-ejchihmxc4o.ws.codeinstitute-ide.net' ]
+ALLOWED_HOSTS = [
+    os.environ.get('ALLOWED_HOST'),
+                 'localhost', 
+                 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-lionelwise7-harmonizeba-ejchihmxc4o.ws.codeinstitute-ide.net',
@@ -119,17 +122,10 @@ MIDDLEWARE = [
     
 ]
 
-# if 'CLIENT_ORIGIN_DEV' in os.environ:
-#     CORS_ALLOWED_ORIGIN_REGEXES = [
-#          r"^https:\/\/.*\.codeinstitute-ide\.net$",
-#     ]
+CORS_ALLOWED_ORIGINS = [
+    os.environ.get('CLIENT_ORIGIN', 'http://localhost:8000'),
+]
 
-if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
-    ]
-if 'CLIENT_ORIGIN_DEV' in os.environ:    
-    CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.codeinstitute-ide\.net$",]
 
 CORS_ALLOW_CREDENTIALS = True
 
