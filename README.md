@@ -10,7 +10,6 @@ Harmonize is a task management application designed to help users organize and p
 2. [Visual Overview](#visual-overview)
 3. [Usage](#usage)
 4. [Endpoints](#endpoints)
-   - [Authentication](#authentication)
    - [Tasks](#tasks)
 5. [Technologies Used](#technologies-used)
 6. [Contributing](#contributing)
@@ -97,7 +96,7 @@ Harmonize is a task management application designed to help users organize and p
 - **POST /api/auth/register**: Register a new user.
 - **POST /api/auth/login**: Authenticate a user and retrieve a token.
 
-### Tasks
+### Tasks/BackEnd
 
 - **GET /api/tasks/**: List all tasks for the authenticated user.
 - **POST /api/tasks/**: Create a new task.
@@ -107,7 +106,7 @@ Harmonize is a task management application designed to help users organize and p
 
 ---
 
-## Example Requests
+## Example Requests/BackEnd
 
 ### Create a Task
 
@@ -148,22 +147,6 @@ Authorization: Bearer <your_token>
 - **Database**: PostgreSQL
 - **Hosting**: Heroku for backend, Netlify for frontend
 - **Version Control**: Git & GitHub
-
----
-
-## Contributing
-
-We welcome contributions! To contribute:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Submit a pull request with a detailed description of your changes.
-
----
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ---
 
