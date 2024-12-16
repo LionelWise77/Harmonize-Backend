@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/HeroSection.module.css";
 
-const HeroSection = ({ quote }) => {
+const HeroSection = () => {
+  const [quote, setQuote] = useState("");
+
+  // Lógica para generar quotes aleatorios
+  useEffect(() => {
+    const quotes = [
+      "Breathe, focus, and accomplish one task at a time.",
+      "Small steps each day lead to big success.",
+      "Harmony is the key to productivity.",
+      "Stay calm, stay organized, stay Harmonized.",
+    ];
+    setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+  }, []);
+
   return (
     <div className={styles.heroContainer}>
+      {/* Sección Izquierda */}
       <div className={styles.heroLeft}>
         <h1 className={styles.heroTitle}>Harmonize Daily Planner</h1>
-        <p className={styles.heroQuote}>
-          Breathe, focus, and accomplish one task at a time.
-        </p>
+        <p className={styles.heroQuote}>{quote}</p>
         <div className={styles.heroButtons}>
           <Link to="/signup" className={styles.heroButton}>
             Sign Up
@@ -20,6 +32,7 @@ const HeroSection = ({ quote }) => {
         </div>
       </div>
 
+      {/* Sección Derecha */}
       <div className={styles.heroRight}>
         <h2 className={styles.heroSubtitle}>Así se ve tu día</h2>
         <div className={styles.taskBox}>
