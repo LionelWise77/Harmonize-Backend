@@ -1,10 +1,29 @@
 import React from "react";
-import "./App.module.css";
+import "../styles/Footer.css";
 
 function Footer() {
   return (
     <footer className="footer">
-      <p>&copy; 2024 Harmonize Calendar. All rights reserved.</p>
+      <div className="socialLinks">
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Facebook
+        </a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          Twitter
+        </a>
+      </div>
+      <p>&copy; 2024 Harmonize Daily Planner</p>
     </footer>
   );
 }
