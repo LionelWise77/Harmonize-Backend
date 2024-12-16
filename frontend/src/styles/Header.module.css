@@ -1,12 +1,44 @@
 .NavBar {
-  background-color: #ffffff;
-  border: 1px solid #dadadf;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #2e4c40;
+  color: white;
 }
 
-.NavLink {
-  padding: 5px;
+.Brand a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.Active i {
-  color: #2142b2;
+.NavLinks {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.NavLinks a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.NavLinks a:hover {
+  color: #a0c1b8;
+}
+
+.Welcome {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.Logout {
+  cursor: pointer;
+  font-weight: bold;
 }

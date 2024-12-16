@@ -45,7 +45,7 @@ function App() {
         <Route path="/logout">
           <Logout setAuth={setAuth} />
         </Route>
-        <Route path="/register">
+        <Route path="/signup">
           <SignUpForm />
         </Route>
         {auth && (

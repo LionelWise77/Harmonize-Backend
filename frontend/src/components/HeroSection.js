@@ -1,50 +1,25 @@
-import React, { useState } from "react";
-import SignUpForm from "../pages/auth/SignUpForm";
-import Login from "../pages/Login";
+import React from "react";
+import { Link } from "react-router-dom";
 import styles from "../styles/HeroSection.module.css";
 
 const HeroSection = ({ quote }) => {
-  const [showForm, setShowForm] = useState(null); // Controla qué formulario mostrar
-
   return (
     <div className={styles.heroContainer}>
-      {/* Sección Izquierda */}
       <div className={styles.heroLeft}>
         <h1 className={styles.heroTitle}>Harmonize Daily Planner</h1>
-        <p className={styles.heroQuote}>{quote}</p>
-
-        {/* Botones Sign Up y Sign In */}
-        {!showForm && (
-          <div className={styles.heroButtons}>
-            <button
-              className={styles.heroButton}
-              onClick={() => setShowForm("signup")}
-            >
-              Sign Up
-            </button>
-            <button
-              className={styles.heroButton}
-              onClick={() => setShowForm("signin")}
-            >
-              Sign In
-            </button>
-          </div>
-        )}
-
-        {/* Formularios Condicionales */}
-        {showForm === "signup" && (
-          <div className={styles.formContainer}>
-            <SignUpForm />
-          </div>
-        )}
-        {showForm === "signin" && (
-          <div className={styles.formContainer}>
-            <Login />
-          </div>
-        )}
+        <p className={styles.heroQuote}>
+          Breathe, focus, and accomplish one task at a time.
+        </p>
+        <div className={styles.heroButtons}>
+          <Link to="/signup" className={styles.heroButton}>
+            Sign Up
+          </Link>
+          <Link to="/login" className={styles.heroButton}>
+            Sign In
+          </Link>
+        </div>
       </div>
 
-      {/* Sección Derecha */}
       <div className={styles.heroRight}>
         <h2 className={styles.heroSubtitle}>Así se ve tu día</h2>
         <div className={styles.taskBox}>
