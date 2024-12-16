@@ -1,20 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-
-import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Image from "react-bootstrap/Image";
-import Container from "react-bootstrap/Container";
-
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
+import { Form, Button, Container, Alert } from "react-bootstrap";
+import axios from "axios";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const SignInForm = () => {
+  // Estado del formulario
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -23,14 +16,12 @@ const SignInForm = () => {
 
   const [errors, setErrors] = useState({});
   const history = useHistory();
+  const setCurrentUser = useSetCurrentUser();
 
   // Manejar cambios en los campos
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setSignInData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setSignInData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   // Manejar envío del formulario
@@ -39,91 +30,77 @@ const SignInForm = () => {
 
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      localStorage.setItem("access_token", data.key); //
-      history.push("/");
+      setCurrentUser(data.user); // Actualizar contexto de usuario
+      history.push("/"); // Redirigir a la página principal
     } catch (err) {
-      setErrors(err.response?.data || {});
+      setErrors(
+        err.response?.data || { non_field_errors: ["Invalid credentials."] }
+      );
     }
   };
 
   return (
-    <Row className={styles.Row}>
-      {/* Columna Izquierda: Formulario */}
-      <Col className="my-auto p-0 p-md-2" md={6}>
-        <Container className={`${appStyles.Content} p-4`}>
-          <h1 className={styles.Header}>Sign In</h1>
-          <Form onSubmit={handleSubmit}>
-            {/* Campo Username */}
-            <Form.Group controlId="username">
-              <Form.Control
-                type="text"
-                placeholder="Username"
-                name="username"
-                className={styles.Input}
-                value={username}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            {errors.username?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+    <Container className={styles.FormContainer}>
+      <h1 className={styles.Header}>Sign In</h1>
 
-            {/* Campo Password */}
-            <Form.Group controlId="password">
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                name="password"
-                className={styles.Input}
-                value={password}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            {errors.password?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+      <Form onSubmit={handleSubmit}>
+        {/* Username */}
+        <Form.Group controlId="username">
+          <Form.Control
+            className={styles.Input}
+            type="text"
+            placeholder="Username"
+            name="username"
+            value={username}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        {errors.username?.map((msg, idx) => (
+          <Alert key={idx} variant="warning">
+            {msg}
+          </Alert>
+        ))}
 
-            {/* Botón de envío */}
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
-              type="submit"
-            >
-              Sign In
-            </Button>
-            {errors.non_field_errors?.map((message, idx) => (
-              <Alert key={idx} variant="warning" className="mt-3">
-                {message}
-              </Alert>
-            ))}
-          </Form>
-        </Container>
+        {/* Password */}
+        <Form.Group controlId="password">
+          <Form.Control
+            className={styles.Input}
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        {errors.password?.map((msg, idx) => (
+          <Alert key={idx} variant="warning">
+            {msg}
+          </Alert>
+        ))}
 
-        {/* Enlace al formulario de registro */}
-        <Container className={`mt-3 ${appStyles.Content}`}>
-          <Link className={styles.Link} to="/signup">
-            Don't have an account? <span>Sign up now!</span>
-          </Link>
-        </Container>
-      </Col>
+        {/* Submit Button */}
+        <Button
+          className={`${btnStyles.Button} ${btnStyles.Wide}`}
+          type="submit"
+        >
+          Sign In
+        </Button>
+        {errors.non_field_errors?.map((msg, idx) => (
+          <Alert key={idx} variant="warning" className="mt-3">
+            {msg}
+          </Alert>
+        ))}
+      </Form>
 
-      {/* Columna Derecha: Imagen */}
-      <Col
-        md={6}
-        className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}
-      >
-        <Image
-          className={`${appStyles.FillerImage}`}
-          src="https://source.unsplash.com/featured/?productivity,focus"
-          alt="Sign In Illustration"
-        />
-      </Col>
-    </Row>
+      {/* Link to Sign Up */}
+      <div className="mt-3 text-center">
+        <Link className={styles.Link} to="/signup">
+          Don't have an account? <span>Sign Up</span>
+        </Link>
+      </div>
+    </Container>
   );
 };
 
