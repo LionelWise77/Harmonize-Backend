@@ -3,9 +3,11 @@ from .models import Task
 from django.utils import timezone  
 
 class TaskSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+        
     class Meta:
         model = Task
-        fields = ['id', 'title', 'description', 'due_date', 'priority', 'status', 'owner', 'created_at', 'updated_at','attachment']
+        fields = ['id', 'title', 'description', 'due_date', 'priority', 'status', 'owner' , 'created_at', 'updated_at','attachment']
 
     def validate_due_date(self, value):
         

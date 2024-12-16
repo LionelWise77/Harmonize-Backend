@@ -22,6 +22,9 @@ function Register({ setAuth }) {
     e.preventDefault();
     setError(null);
 
+    console.log("Headers:", axios.defaults.headers);
+    console.log("Payload:", formData);
+
     // Step 1: Register the user
     axios
       .post("dj-rest-auth/registration/", formData)
