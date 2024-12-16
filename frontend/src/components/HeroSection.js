@@ -26,7 +26,7 @@ const HeroSection = () => {
           <Link to="/signup" className={styles.heroButton}>
             Sign Up
           </Link>
-          <Link to="/login" className={styles.heroButton}>
+          <Link to="/signin" className={styles.heroButton}>
             Sign In
           </Link>
         </div>
