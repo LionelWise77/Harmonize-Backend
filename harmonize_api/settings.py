@@ -30,21 +30,21 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-#REST_FRAMEWORK = {
-#    'DEFAULT_AUTHENTICATION_CLASSES': [(
-#       'rest_framework.authentication.SessionAuthentication'
- #       if 'DEV' in os.environ
-  #      else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
-   # )],
- #   'DEFAULT_PAGINATION_CLASS':
- #       'rest_framework.pagination.PageNumberPagination',
- #   'PAGE_SIZE': 10,
-  #  'DATETIME_FORMAT': '%d %b %Y',
-#}
-#if 'DEV' not in os.environ:
- #   REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
- #       'rest_framework.renderers.JSONRenderer',
- #   ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+       'rest_framework.authentication.SessionAuthentication'
+          if 'DEV' in os.environ
+            else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )],
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DATETIME_FORMAT': '%d %b %Y',
+}
+if 'DEV' not in os.environ:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+        'rest_framework.renderers.JSONRenderer',
+    ]
 
 REST_USE_JWT = True
 JWT_AUTH_SECURE = True
@@ -123,8 +123,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    os.environ.get('CLIENT_ORIGIN', 'http://localhost:8000'),
+    os.environ.get('CLIENT_ORIGIN')
 ]
+
 
 
 CORS_ALLOW_CREDENTIALS = True

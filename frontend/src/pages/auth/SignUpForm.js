@@ -6,7 +6,6 @@ import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 
 const SignUpForm = () => {
-  // Estado del formulario
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
@@ -17,13 +16,11 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState({});
   const history = useHistory();
 
-  // Manejar cambios en los campos
   const handleChange = (event) => {
     const { name, value } = event.target;
     setSignUpData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // Manejar envío del formulario
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password1 !== password2) {
@@ -33,7 +30,7 @@ const SignUpForm = () => {
 
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/signin"); // Redirigir a la página de inicio de sesión
+      history.push("/signin");
     } catch (err) {
       setErrors(
         err.response?.data || { non_field_errors: ["An error occurred."] }

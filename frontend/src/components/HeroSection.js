@@ -5,7 +5,7 @@ import styles from "../styles/HeroSection.module.css";
 const HeroSection = () => {
   const [quote, setQuote] = useState("");
 
-  // Lógica para generar quotes aleatorios
+  // Quotes
   useEffect(() => {
     const quotes = [
       "Breathe, focus, and accomplish one task at a time.",
@@ -18,7 +18,7 @@ const HeroSection = () => {
 
   return (
     <div className={styles.heroContainer}>
-      {/* Sección Izquierda */}
+      {/* Left Section */}
       <div className={styles.heroLeft}>
         <h1 className={styles.heroTitle}>Harmonize Daily Planner</h1>
         <p className={styles.heroQuote}>{quote}</p>
@@ -32,7 +32,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Sección Derecha */}
+      {/* Right secction */}
       <div className={styles.heroRight}>
         <h2 className={styles.heroSubtitle}>Así se ve tu día</h2>
         <div className={styles.taskBox}>
