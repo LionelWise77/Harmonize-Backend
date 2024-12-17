@@ -12,3 +12,5 @@ axios.defaults.withCredentials = true;
 
 export const axiosRec = axios.create();
 export const axiosRes = axios.create();
+
+export default axios;
