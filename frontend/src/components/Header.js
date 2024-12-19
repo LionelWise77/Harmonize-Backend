@@ -1,30 +1,58 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/Header.module.css";
+import { NavLink } from "react-router-dom";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+import axios from "axios";
 
-const Header = ({ auth, username }) => {
+const Header = () => {
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("/dj-rest-auth/logout/");
+      setCurrentUser(null);
+      localStorage.removeItem("access_token");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
+
+  // Iconos cuando el usuario está autenticado
+  const loggedInIcons = (
+    <>
+      <span className={styles.NavLink}>
+        <i className="fas fa-user"></i> {currentUser?.username}
+      </span>
+      <NavLink to="/" className={styles.NavLink} onClick={handleLogout}>
+        <i className="fas fa-sign-out-alt"></i> Logout
+      </NavLink>
+    </>
+  );
+
   return (
-    <nav className={styles.NavBar}>
-      <div className={styles.Brand}>
-        <Link to="/">Harmonize Calendar</Link>
-      </div>
+    <Navbar className={styles.NavBar} expand="md" fixed="top">
+      <Container>
+        {/* Nombre de la App en lugar del logo */}
+        <Navbar.Brand className={styles.AppName}>
+          Harmonize Daily Planner
+        </Navbar.Brand>
 
-      <ul className={styles.NavLinks}>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        {auth ? (
-          <>
-            <li className={styles.Welcome}>Welcome, {username}</li>
-            <li>
-              <Link to="/logout" className={styles.Logout}>
-                Logout
-              </Link>
-            </li>
-          </>
-        ) : null}
-      </ul>
-    </nav>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            <NavLink className={styles.NavLink} exact to="/">
+              Home
+            </NavLink>
+            {currentUser ? loggedInIcons : null}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 

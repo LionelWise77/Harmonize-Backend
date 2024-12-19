@@ -38,4 +38,4 @@ urlpatterns = [
 
 ]
 
-handler404 = TemplateView.as_view(template_name='index.html')
+#handler404 = TemplateView.as_view(template_name='index.html')

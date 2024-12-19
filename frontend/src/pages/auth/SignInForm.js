@@ -7,7 +7,6 @@ import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const SignInForm = () => {
-  // Estado del formulario
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -18,20 +17,18 @@ const SignInForm = () => {
   const history = useHistory();
   const setCurrentUser = useSetCurrentUser();
 
-  // Manejar cambios en los campos
   const handleChange = (event) => {
     const { name, value } = event.target;
     setSignInData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // Manejar envío del formulario
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      setCurrentUser(data.user); // Actualizar contexto de usuario
-      history.push("/"); // Redirigir a la página principal
+      setCurrentUser(data.user);
+      history.push("api/tasks");
     } catch (err) {
       setErrors(
         err.response?.data || { non_field_errors: ["Invalid credentials."] }

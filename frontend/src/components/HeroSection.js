@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/HeroSection.module.css";
+import axios from "axios";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const HeroSection = () => {
   const [quote, setQuote] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const currentUser = useCurrentUser();
 
-  // Quotes
+  // Lógica para quotes aleatorios
   useEffect(() => {
     const quotes = [
       "Breathe, focus, and accomplish one task at a time.",
@@ -16,32 +20,65 @@ const HeroSection = () => {
     setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
   }, []);
 
+  // Lógica para obtener las tareas del usuario
+  useEffect(() => {
+    if (currentUser) {
+      const fetchTasks = async () => {
+        try {
+          const { data } = await axios.get("tasks/"); // Ajusta la ruta según tu backend
+          setTasks(data);
+        } catch (err) {
+          console.error("Error fetching tasks:", err);
+        }
+      };
+
+      fetchTasks();
+    }
+  }, [currentUser]);
+
   return (
     <div className={styles.heroContainer}>
-      {/* Left Section */}
+      {/* Sección Izquierda */}
       <div className={styles.heroLeft}>
         <h1 className={styles.heroTitle}>Harmonize Daily Planner</h1>
         <p className={styles.heroQuote}>{quote}</p>
-        <div className={styles.heroButtons}>
-          <Link to="/signup" className={styles.heroButton}>
-            Sign Up
-          </Link>
-          <Link to="/signin" className={styles.heroButton}>
-            Sign In
-          </Link>
-        </div>
+        {!currentUser && (
+          <div className={styles.heroButtons}>
+            <Link to="/signup" className={styles.heroButton}>
+              Sign Up
+            </Link>
+            <Link to="/signin" className={styles.heroButton}>
+              Sign In
+            </Link>
+          </div>
+        )}
       </div>
 
-      {/* Right secction */}
+      {/* Sección Derecha */}
       <div className={styles.heroRight}>
-        <h2 className={styles.heroSubtitle}>Así se ve tu día</h2>
-        <div className={styles.taskBox}>
-          <div>Date: 2024-12-16</div>
-          <div>10:00 AM - Morning Meditation</div>
-        </div>
-        <div className={styles.taskBox}>
-          <div>Date: 2024-12-16</div>
-          <div>2:00 PM - Work on Project Harmonize</div>
+        <h2 className={styles.heroSubtitle}>
+          {currentUser ? "Así se ve tu día" : "Tareas del ejemplo"}
+        </h2>
+        <div className={styles.taskList}>
+          {currentUser && tasks.length > 0 ? (
+            tasks.map((task) => (
+              <div key={task.id} className={styles.taskBox}>
+                <div>{task.date}</div>
+                <div>{`${task.time} - ${task.title}`}</div>
+              </div>
+            ))
+          ) : (
+            <>
+              <div className={styles.taskBox}>
+                <div>Date: 2024-12-16</div>
+                <div>10:00 AM - Morning Meditation</div>
+              </div>
+              <div className={styles.taskBox}>
+                <div>Date: 2024-12-16</div>
+                <div>2:00 PM - Work on Project Harmonize</div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
