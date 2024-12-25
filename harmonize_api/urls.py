@@ -25,16 +25,13 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('api/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('api/dj-rest-auth/logout/', logout_route),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('dj-rest-auth/logout/', logout_route),
     path('api/', include('planner.urls')),
-    path('api/accounts/profile/', RedirectView.as_view(url='/api/tasks/', permanent=True)),
-    
-    
-    
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('accounts/profile/', RedirectView.as_view(url='/api/tasks/', permanent=True)),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]
 
