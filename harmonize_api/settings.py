@@ -72,8 +72,8 @@ ALLOWED_HOSTS = [
                  ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-lionelwise7-harmonizeba-enzgix52z0z.ws.codeinstitute-ide.net',
-    'https://8080-lionelwise7-harmonizefr-vwu0ul964y2.ws.codeinstitute-ide.net',  
+    'https://8000-lionelwise7-harmonizeba-rqih9n6nle6.ws.codeinstitute-ide.net',
+    'https://8080-lionelwise7-harmonizefr-m9psvzw4741.ws.codeinstitute-ide.net',  
 ]
 
 LOGIN_REDIRECT_URL = '/api/tasks/'
@@ -114,7 +114,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,8 +124,8 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     os.environ.get('CLIENT_ORIGIN', 'http://localhost:8000'),
-    'https://8000-lionelwise7-harmonizeba-enzgix52z0z.ws.codeinstitute-ide.net',
-    'https://8080-lionelwise7-harmonizefr-vwu0ul964y2.ws.codeinstitute-ide.net', 
+    'https://8000-lionelwise7-harmonizeba-rqih9n6nle6.ws.codeinstitute-ide.net',
+    'https://8080-lionelwise7-harmonizefr-m9psvzw4741.ws.codeinstitute-ide.net', 
 ]
 
 
