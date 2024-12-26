@@ -71,7 +71,7 @@ ALLOWED_HOSTS = [
                  'localhost', 
                  ]
 
-CSRF_TRUSTED_ORIGINS = [
+CSRF_TRUSTED_ORIGINS = [ 
     'https://8000-lionelwise7-harmonizeba-rqih9n6nle6.ws.codeinstitute-ide.net',
     'https://8080-lionelwise7-harmonizefr-m9psvzw4741.ws.codeinstitute-ide.net',  
 ]
@@ -123,7 +123,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    os.environ.get('CLIENT_ORIGIN', 'http://localhost:8000'),
+     os.environ.get('CLIENT_ORIGIN', 'http://localhost:8000'),
     'https://8000-lionelwise7-harmonizeba-rqih9n6nle6.ws.codeinstitute-ide.net',
     'https://8080-lionelwise7-harmonizefr-m9psvzw4741.ws.codeinstitute-ide.net', 
 ]
