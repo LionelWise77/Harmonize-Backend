@@ -72,8 +72,8 @@ ALLOWED_HOSTS = [
                  ]
 
 CSRF_TRUSTED_ORIGINS = [ 
-    'https://8000-lionelwise7-harmonizeba-rqih9n6nle6.ws.codeinstitute-ide.net',
-    'https://8080-lionelwise7-harmonizefr-m9psvzw4741.ws.codeinstitute-ide.net',  
+    'https://8000-lionelwise7-harmonizeba-futj17df98x.ws.codeinstitute-ide.net',
+    'https://8080-lionelwise7-harmonizefr-e89aty5k1pu.ws.codeinstitute-ide.net',  
 ]
 
 LOGIN_REDIRECT_URL = '/api/tasks/'
@@ -124,8 +124,8 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
      os.environ.get('CLIENT_ORIGIN', 'http://localhost:8000'),
-    'https://8000-lionelwise7-harmonizeba-rqih9n6nle6.ws.codeinstitute-ide.net',
-    'https://8080-lionelwise7-harmonizefr-m9psvzw4741.ws.codeinstitute-ide.net', 
+    'https://8000-lionelwise7-harmonizeba-futj17df98x.ws.codeinstitute-ide.net',
+    'https://8080-lionelwise7-harmonizefr-e89aty5k1pu.ws.codeinstitute-ide.net', 
 ]
 
 
