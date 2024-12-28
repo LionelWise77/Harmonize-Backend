@@ -15,8 +15,6 @@ Harmonize is a task management application designed to help users organize and p
 6. [Unfixed Bugs](#unfixed-bugs)
 7. [Deployment](#deployment)
 8. [Credits](#credits)
-9. [Content](#content)
-10. [Media](#media)
 
 ---
 
@@ -142,14 +140,4 @@ The live link can be found here - https://github.com/LionelWise77/PP1-The-Alchem
 
 ## Credits
 
-i share my Credits , wiht my Mentor Dick, the tutors from Code Institute and some classmates in slack.
-
-### Content
-
-- The text for the Home page was taken from Wikipedia Article Breatwork
-- Instructions on how to implement Breathwork techniques [Specific YouTube channel](https://www.youtube.com/@BreatheWithSandy)
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
-
-### Media
-
-- The photos used on the home and sign up page are from [photos source](https://www.pexels.com/search/natural/)
+i share my Credits , the tutors from Code Institute and some classmates in slack.
