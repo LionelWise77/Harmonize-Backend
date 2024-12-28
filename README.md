@@ -7,87 +7,40 @@ Harmonize is a task management application designed to help users organize and p
 ## Table of Contents
 
 1. [Features](#features)
-2. [Visual Overview](#visual-overview)
-3. [Usage](#usage)
-4. [Endpoints](#endpoints)
+2. [Usage](#usage)
+3. [Endpoints](#endpoints)
    - [Tasks](#tasks)
-5. [Technologies Used](#technologies-used)
-6. [Contributing](#contributing)
-7. [Testing](#testing)
-8. [Unfixed Bugs](#unfixed-bugs)
-9. [Deployment](#deployment)
-10. [Credits](#credits)
-11. [Content](#content)
-12. [Media](#media)
+4. [Technologies Used](#technologies-used)
+5. [Testing](#testing)
+6. [Unfixed Bugs](#unfixed-bugs)
+7. [Deployment](#deployment)
+8. [Credits](#credits)
+9. [Content](#content)
+10. [Media](#media)
 
 ---
 
 ## Features
 
-- **Task Management**: Create, update, delete, and view tasks.
-- **Prioritization**: Assign priorities to tasks (low, medium, high).
-- **Deadline Tracking**: Mark tasks as overdue based on deadlines.
-- **Categories**: Organize tasks into customizable categories.
-- **User Authentication**: Secure login and registration for managing tasks.
-- **Responsive Design**: Optimized for mobile and desktop devices.
-- **Random Motivational Quotes**: Get inspired each time you use the app.
-
----
-
-## Visual Overview
-
-### Header
-
-![Header](/assets/images/harmonize-header.png)
-
-- The header displays the name of the **Harmonize** task management application, using the primary color scheme for consistency.
-- This section enables users to navigate seamlessly between pages across all devices, without relying on the browser's 'back' button.
-
----
-
-### Landing Page (Hero Section)
-
-![Hero](/assets/images/harmonize-hero.png)
-
-- The landing page features an inspirational background image with an overlay of motivational text to immediately engage the user.
-- This section invites users to take control of their tasks and improve their productivity in a visually appealing way.
-
----
-
-### Benefits Section
-
-![Benefits](/assets/images/harmonize-benefits.png)
-
-- This section highlights the benefits of using **Harmonize**, such as improved productivity, better task organization, and reduced stress by staying on top of deadlines.
-- The benefits are designed to resonate with users looking for a streamlined task management solution.
-
----
-
-### Footer
-
-![Footer](/assets/images/harmonize-footer.png)
-
-- The footer includes links to relevant social media platforms for **Harmonize**, allowing users to stay updated with app news and community tips.
-- All links open in a new tab, ensuring smooth navigation while keeping the user's progress on the site intact.
-- The footer encourages users to connect and engage with the **Harmonize** community for shared productivity insights.
-
----
+1. User Registration and Authentication:
+   - Registration, Login, Logout.
+   - Token-based authentication.
+2. Task Management:
+   - Create, Read, Update, Delete (CRUD) tasks.
+   - Task filtering by priority, due date, and status.
+3. CORS Configuration:
+   - Enables secure communication with the frontend.
 
 ## Usage
 
 1. Start the backend server:
+
    ```bash
    python manage.py runserver
-   ```
-2. Start the frontend development server:
-   ```bash
-   npm start
-   ```
-3. Access the app in your browser at `http://localhost:3000`.
 
----
+   ```
 
----
+2. Access the app in your browser at `http://localhost:8000`.
 
 ## Endpoints
 
@@ -142,13 +95,21 @@ Authorization: Bearer <your_token>
 
 ## Technologies Used
 
-- **Frontend**: React, Axios, HTML5, CSS3
-- **Backend**: Django REST Framework, Python
-- **Database**: PostgreSQL
-- **Hosting**: Heroku for backend, Netlify for frontend
-- **Version Control**: Git & GitHub
+### **Technologies Used**
+
+- **Django** (4.x): Web framework.
+- **Django REST Framework (DRF)**: API development.
+- **PostgreSQL**: Database.
+- **dj-rest-auth**: User authentication.
+- **django-cors-headers**: Handles CORS.
+- **cloudinary-storage**: Media file storage.
+- **gunicorn**: WSGI HTTP server for deployment.
 
 ---
+
+## Install Dependencies
+
+- pip install -r requirements.txt
 
 ## Testing
 
