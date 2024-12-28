@@ -5,7 +5,6 @@ from .models import Task
 from .serializers import TaskSerializer
 from .filters import TaskFilter
 from harmonize_api.permissions import IsOwnerOrReadOnly
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 from rest_framework.pagination import PageNumberPagination
 
 class TaskPagination(PageNumberPagination):
@@ -17,7 +16,7 @@ class TaskListCreateView(generics.ListCreateAPIView):
     
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsOwnerOrReadOnly]
     filter_backends = [DjangoFilterBackend, drf_filters.OrderingFilter]
     filterset_class = TaskFilter
     ordering_fields = ['due_date', 'priority', 'created_at']  
@@ -33,7 +32,7 @@ class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [AllowAny] 
+    permission_classes = [IsOwnerOrReadOnly] 
 
     def perform_update(self, serializer):
        serializer.save(owner=self.request.user)
@@ -41,4 +40,4 @@ class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 class TaskDetailView(generics.RetrieveAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsOwnerOrReadOnly]
