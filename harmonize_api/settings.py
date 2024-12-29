@@ -65,6 +65,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
+print(DEBUG)
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
@@ -123,9 +124,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-     os.environ.get('CLIENT_ORIGIN', 'http://localhost:8000'),
-    'https://8000-lionelwise7-harmonizeba-futj17df98x.ws.codeinstitute-ide.net',
-    'https://8080-lionelwise7-harmonizefr-e89aty5k1pu.ws.codeinstitute-ide.net', 
+     os.environ.get('CLIENT_ORIGIN', 'http://localhost:8000'), 
 ]
 
 
@@ -217,7 +216,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
+
+import os
+
+if not DEBUG:  
+    WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
 
 
 # Default primary key field type

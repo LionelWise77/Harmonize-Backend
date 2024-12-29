@@ -13,16 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.http import JsonResponse
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView, TemplateView
+from django.views.generic import RedirectView
 from .views import root_route, logout_route
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+def root_view(request):
+    return JsonResponse({"message": "Welcome to the Harmonize API!"})
 
 
 urlpatterns = [
     
-    path('', TemplateView.as_view(template_name='index.html')),
+    path('', root_view, name='root'), 
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
@@ -30,9 +33,7 @@ urlpatterns = [
     path('dj-rest-auth/logout/', logout_route),
     path('api/', include('planner.urls')),
     path('accounts/profile/', RedirectView.as_view(url='/api/tasks/', permanent=True)),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
 
 ]
 
-#handler404 = TemplateView.as_view(template_name='index.html')
