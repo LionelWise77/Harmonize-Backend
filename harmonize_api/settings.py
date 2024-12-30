@@ -64,7 +64,7 @@ REST_AUTH_SERIALIZERS = {
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
+DEBUG = 'DEBUG' in os.environ
 print(DEBUG)
 
 ALLOWED_HOSTS = [
@@ -134,6 +134,8 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 
 
 CORS_ALLOW_CREDENTIALS = True
+
+ACCOUNT_EMAIL_VERIFICATION='none'
 
 ROOT_URLCONF = 'harmonize_api.urls'
 
