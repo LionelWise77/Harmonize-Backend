@@ -14,3 +14,4 @@ class TaskSerializer(serializers.ModelSerializer):
         if value and value < timezone.now().date():
             raise serializers.ValidationError("Date cannot be before the current date .")
         return value
+
