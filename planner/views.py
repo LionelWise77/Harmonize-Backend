@@ -25,18 +25,27 @@ class TaskListCreateView(generics.ListCreateAPIView):
     
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+        
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+        print("Fetched tasks:", response.data)  # Log the data being returned
+        return response    
 
 
 
 class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [IsOwnerOrReadOnly] 
+    permission_classes = [IsOwnerOrReadOnly]
 
     def perform_update(self, serializer):
-       serializer.save(owner=self.request.user)
+        print("Updating task with data:", serializer.validated_data)
+        serializer.save(owner=self.request.user)
 
+    def perform_destroy(self, instance):
+        print("Deleting task with id:", instance.id)
+        instance.delete()
+        
 class TaskDetailView(generics.RetrieveAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
