@@ -21,6 +21,8 @@ class Task(models.Model):
     description = models.TextField(blank=True)
     due_date = models.DateField(null=True, blank=True)
     due_time = models.TimeField(null=True, blank=True)
+    start_time = models.TimeField(blank=True, null=True)
+    end_time = models.TimeField(blank=True, null=True)
     priority = models.CharField(max_length=1, choices=PRIORITY_CHOICES, default='M')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open') 
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks") 
