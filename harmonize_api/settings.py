@@ -73,8 +73,8 @@ ALLOWED_HOSTS = [
                  ]
 
 CSRF_TRUSTED_ORIGINS = [ 
-    'https://8000-lionelwise7-harmonizeba-futj17df98x.ws.codeinstitute-ide.net',
-    'https://8080-lionelwise7-harmonizefr-e89aty5k1pu.ws.codeinstitute-ide.net',  
+    'https://8000-lionelwise7-harmonizeba-39ldxkh93bi.ws.codeinstitute-ide.net',
+    'https://8080-lionelwise7-harmonizefr-08b5uw6j757.ws.codeinstitute-ide.net',  
 ]
 
 LOGIN_REDIRECT_URL = '/api/tasks/'
