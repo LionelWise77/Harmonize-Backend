@@ -14,8 +14,6 @@ from pathlib import Path
 import os
 import dj_database_url
 
-
-
 if os.path.exists('env.py'):
     import env
 
@@ -69,12 +67,14 @@ print(DEBUG)
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
-                 'localhost', 
-                 ]
+    "localhost",
+    "127.0.0.1",
+    ".herokuapp.com",
+]
 
 CSRF_TRUSTED_ORIGINS = [ 
-    'https://8000-lionelwise7-harmonizeba-39ldxkh93bi.ws.codeinstitute-ide.net',
-    'https://8080-lionelwise7-harmonizefr-08b5uw6j757.ws.codeinstitute-ide.net',  
+    "http://127.0.0.1:8000",
+    "http://localhost:3000",  
 ]
 
 LOGIN_REDIRECT_URL = '/api/tasks/'
@@ -127,7 +127,7 @@ if "CLIENT_ORIGIN" in os.environ:
     CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://.*\.codeinstitute-ide\.net$"
+    r"https://localhost"
 ]
 
 
