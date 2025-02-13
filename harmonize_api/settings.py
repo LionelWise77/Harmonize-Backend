@@ -125,6 +125,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# CORS settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
@@ -132,10 +133,11 @@ CORS_ALLOWED_ORIGINS = [
     "https://harmonize-frontend-658a78db4f9b.herokuapp.com",
 ]
 
+CORS_ALLOW_CREDENTIALS = True
+
+# If CLIENT_ORIGIN is set in the environment, add it to CORS_ALLOWED_ORIGINS
 if "CLIENT_ORIGIN" in os.environ:
     CORS_ALLOWED_ORIGINS.append(os.environ.get("CLIENT_ORIGIN"))
-
-CORS_ALLOW_CREDENTIALS = True
 
 ACCOUNT_EMAIL_VERIFICATION='none'
 
