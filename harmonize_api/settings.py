@@ -74,7 +74,9 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [ 
     "http://127.0.0.1:8000",
-    "http://localhost:3000",  
+    "http://localhost:3000",
+    "https://harmonize-backend-6405d8cae271.herokuapp.com",
+    "https://harmonize-frontend-658a78db4f9b.herokuapp.com",
 ]
 
 LOGIN_REDIRECT_URL = '/api/tasks/'
@@ -123,15 +125,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if "CLIENT_ORIGIN" in os.environ:
-    CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
-
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"https://localhost"
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:8000",
+    "https://harmonize-backend-6405d8cae271.herokuapp.com",
+    "https://harmonize-frontend-658a78db4f9b.herokuapp.com",
 ]
 
-
-
+if "CLIENT_ORIGIN" in os.environ:
+    CORS_ALLOWED_ORIGINS.append(os.environ.get("CLIENT_ORIGIN"))
 
 CORS_ALLOW_CREDENTIALS = True
 

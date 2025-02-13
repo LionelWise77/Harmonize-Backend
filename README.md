@@ -1,42 +1,42 @@
-# Harmonize - Task Management API
+# 🎵 **Harmonize - Task Management API**
 
-Harmonize is a task management application designed to help users organize and prioritize their daily tasks efficiently. This backend provides a REST API for managing tasks and integrates key features such as user authentication, task filtering, and prioritization.
+**Harmonize** is a task management system designed to help users organize their daily activities efficiently. This REST API provides full **CRUD functionality**, user authentication, and task filtering, ensuring a seamless task management experience.
 
 ---
 
-## Table of Contents
+## 📌 **Table of Contents**
 
 1. [Features](#features)
-2. [Usage](#usage)
-3. [Endpoints](#endpoints)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Endpoints](#endpoints)
+   - [Authentication](#authentication)
    - [Tasks](#tasks)
-4. [Technologies Used](#technologies-used)
-5. [Testing](#testing)
-6. [Unfixed Bugs](#unfixed-bugs)
-7. [Deployment](#deployment)
-8. [Credits](#credits)
+5. [Technologies Used](#technologies-used)
+6. [Testing](#testing)
+7. [Known Issues](#known-issues)
+8. [Deployment](#deployment)
+9. [Credits](#credits)
 
 ---
 
-## Features
+## ✨ **Features**
 
-1. User Registration and Authentication:
-   - Registration, Login, Logout.
-   - Token-based authentication.
-2. Task Management:
-   - Create, Read, Update, Delete (CRUD) tasks.
-   - Task filtering by priority, due date, and status.
-3. CORS Configuration:
-   - Enables secure communication with the frontend.
+✔ **User Authentication** (Register, Login, Logout, Token-based authentication).  
+✔ **Task Management** (Create, Read, Update, Delete tasks).  
+✔ **Task Filtering** (Filter by priority, due date, and status).  
+✔ **CORS Configuration** (Allows secure communication with the frontend).
 
-## Usage
+---
 
-1. Start the backend server:
+## ⚙️ **Installation**
 
-   ```bash
-   python manage.py runserver
+Clone this repository:
 
-   ```
+````bash
+git clone https://github.com/lionelwise77/harmonize-api.git
+cd harmonize-api
+
 
 2. Access the app in your browser at `http://localhost:8000`.
 
@@ -72,7 +72,7 @@ Authorization: Bearer <your_token>
   "priority": "high",
   "category": "Documentation"
 }
-```
+````
 
 ### Response
 
