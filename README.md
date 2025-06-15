@@ -1,78 +1,103 @@
-# 🎵 **Harmonize - Task Management API**
+# 🎵 Harmonize - Task Management API
 
-**Harmonize** is a task management system designed to help users organize their daily activities efficiently. This REST API provides full **CRUD functionality**, user authentication, and task filtering, ensuring a seamless task management experience.
+The **Harmonize API** is a RESTful backend service built with **Django** and **Django REST Framework**, providing secure, token-based user authentication and full **CRUD functionality** for task management. It supports frontend integration, filtering, validations, and Heroku deployment.
 
 ---
 
-## 📌 **Table of Contents**
+## 📌 Table of Contents
 
 1. [Features](#features)
 2. [Installation](#installation)
 3. [Usage](#usage)
 4. [Endpoints](#endpoints)
-   - [Authentication](#authentication)
-   - [Tasks](#tasks)
-5. [Technologies Used](#technologies-used)
-6. [Testing](#testing)
-7. [Known Issues](#known-issues)
+5. [Example Requests](#example-requests)
+6. [Technologies Used](#technologies-used)
+7. [Testing](#testing)
 8. [Deployment](#deployment)
 9. [Credits](#credits)
 
 ---
 
-## ✨ **Features**
+## ✨ Features
 
-✔ **User Authentication** (Register, Login, Logout, Token-based authentication).  
-✔ **Task Management** (Create, Read, Update, Delete tasks).  
-✔ **Task Filtering** (Filter by priority, due date, and status).  
-✔ **CORS Configuration** (Allows secure communication with the frontend).
+✔ **JWT Authentication** (Register, Login, Token refresh)  
+✔ **CRUD operations** for user-specific tasks  
+✔ **Task Filtering** by priority, due date, status  
+✔ **Validation** to prevent past dates and invalid logic  
+✔ **CORS configuration** for frontend connection  
+✔ **Environment-based configuration** using `.env`  
+✔ **Deployed on Heroku with PostgreSQL**
 
 ---
 
-## ⚙️ **Installation**
+## ⚙️ Installation
 
-Clone this repository:
+<!-- prettier-ignore -->
+```bash
+git clone https://github.com/LionelWise77/harmonize-backend.git
+cd harmonize-backend
 
-````bash
-git clone https://github.com/lionelwise77/harmonize-api.git
-cd harmonize-api
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
+# Install dependencies
+pip install -r requirements.txt
 
-2. Access the app in your browser at `http://localhost:8000`.
+# Set up environment variables in .env
+DEBUG=True
+SECRET_KEY=your_secret
+ALLOWED_HOSTS=localhost,127.0.0.1
+DATABASE_URL=sqlite:///db.sqlite3  # or your PostgreSQL URL
+
+# Run migrations and start server
+python manage.py migrate
+python manage.py runserver
+
+## 🚀 Usage
+
+Once running, the API is available at: http://127.0.0.1:8000/api/
 
 ## Endpoints
 
-### Authentication
+## 🔐 Authentication Endpoints
 
-- **POST /api/auth/register**: Register a new user.
-- **POST /api/auth/login**: Authenticate a user and retrieve a token.
-
-### Tasks/BackEnd
-
-- **GET /api/tasks/**: List all tasks for the authenticated user.
-- **POST /api/tasks/**: Create a new task.
-- **GET /api/tasks/:id/**: Retrieve details of a specific task.
-- **PUT /api/tasks/:id/**: Update a specific task.
-- **DELETE /api/tasks/:id/**: Delete a specific task.
+| Method | Endpoint | Description               |
+|--------|----------|---------------------------|
+| POST   | /api/register/        | Register a new user            |
+| POST   | /api/token/           | Obtain JWT tokens              |
+| POST   | /api/token/refresh/   | Refresh access token           |
 
 ---
 
-## Example Requests/BackEnd
+## 📝 Tasks Endpoints
 
-### Create a Task
+| Method | Endpoint             | Description                   |
+|--------|----------------------|-------------------------------|
+| GET    | /api/tasks/          | List user's tasks             |
+| POST   | /api/tasks/          | Create a new task             |
+| GET    | /api/tasks/<id>/     | Retrieve specific task        |
+| PUT    | /api/tasks/<id>/     | Update task                   |
+| DELETE | /api/tasks/<id>/     | Delete task                   |
 
-```bash
+---
+
+## 🧪 Example Requests
+
+### 🔧 Create a Task
+
+```http
 POST /api/tasks/
-Content-Type: application/json
 Authorization: Bearer <your_token>
+Content-Type: application/json
+
 {
   "title": "Complete README",
-  "description": "Write the full documentation for the Harmonize app.",
-  "due_date": "2024-12-20",
+  "description": "Write the full documentation.",
+  "due_date": "2025-06-25",
   "priority": "high",
-  "category": "Documentation"
+  "status": "open"
 }
-````
 
 ### Response
 
@@ -87,21 +112,23 @@ Authorization: Bearer <your_token>
   "status": "open",
   "owner": "user@example.com"
 }
-```
+````
 
 ---
 
 ## Technologies Used
 
-### **Technologies Used**
+## 🛠️ Technologies Used
 
-- **Django** (4.x): Web framework.
-- **Django REST Framework (DRF)**: API development.
-- **PostgreSQL**: Database.
-- **dj-rest-auth**: User authentication.
-- **django-cors-headers**: Handles CORS.
-- **cloudinary-storage**: Media file storage.
-- **gunicorn**: WSGI HTTP server for deployment.
+- **Python 3.12**
+- **Django 4.x**
+- **Django REST Framework**
+- **djangorestframework-simplejwt**
+- **PostgreSQL**
+- **Cloudinary Storage** (optional)
+- **Heroku**
+- **CORS Headers**
+- **Gunicorn**
 
 ---
 
@@ -109,19 +136,18 @@ Authorization: Bearer <your_token>
 
 - pip install -r requirements.txt
 
-## Testing
+## ✅ Testing
 
-![home](/assets/css/images/lighthouse%20resubmited.png)
+| Feature                  | Action          | Expected Result      | Status |
+| ------------------------ | --------------- | -------------------- | ------ |
+| Register user            | POST /register/ | User created (201)   | ✅     |
+| Login                    | POST /token/    | Token received (200) | ✅     |
+| Invalid login            | POST /token/    | 401 Unauthorized     | ✅     |
+| Create task (valid)      | POST /tasks/    | 201 Created          | ✅     |
+| Create task (past date)  | POST /tasks/    | 400 Bad Request      | ✅     |
+| Edit another user’s task | PUT /tasks/:id  | 403 Forbidden        | ✅     |
 
-- well this webside was my first and take more time, i guest is not a bad puntuation but i can make better next time.
-
-![about](/assets/css/images/about%20screen.png)
-
-- im very satisfied with the result obtein with the others two sides, i was excited and very proud of.
-
-![Sign up](/assets/css/images/signup%20screen%20test.png)
-
-- i have problem and bugs with the media quarie but could solved in the last moment
+---
 
 ### Validator Testing
 
@@ -134,10 +160,31 @@ Authorization: Bearer <your_token>
 
 ## all bugs were fixed , i have trouble with some CSS bugs but at the end everything is running well.
 
-## Deployment
+## 🚀 Deployment
 
-The live link can be found here - https://github.com/LionelWise77/PP1-The-Alchemist-Cave/deployments
+### 🔗 Live App:
 
-## Credits
+[https://harmonize-backend-6405d8cae271.herokuapp.com/](https://harmonize-backend-6405d8cae271.herokuapp.com/)
 
-i share my Credits , the tutors from Code Institute and some classmates in slack.
+---
+
+## 🧼 Known Issues
+
+- Minor **PEP8 formatting issues** – will be linted and cleaned before final delivery.
+- Previously allowed **rapid double-submissions** – this has been patched.
+- Some **edge-case errors** may lack detailed user feedback – improvements planned for UX clarity.
+
+---
+
+## 🙏 Credits
+
+Special thanks to:
+
+- The **tutors and support team at Code Institute**
+- The **Slack community** for feedback and motivation
+- The official **Django and DRF documentation** for technical guidance
+- All **project reviewers** who provided constructive feedback
+
+```
+
+```
