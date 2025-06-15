@@ -14,7 +14,7 @@ class Task(models.Model):
         ('open', 'Open'),
         ('in_progress', 'In Progress'),
         ('completed', 'Completed'),
-        ('overdue', 'Overdue'),
+        
     ]
     
     title = models.CharField(max_length=255)
