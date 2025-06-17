@@ -13,8 +13,9 @@ The **Harmonize API** is a RESTful backend service built with **Django** and **D
 5. [Example Requests](#example-requests)
 6. [Technologies Used](#technologies-used)
 7. [Testing](#testing)
-8. [Deployment](#deployment)
-9. [Credits](#credits)
+8. [Agile Development](#Agile)
+9. [Deployment](#deployment)
+10. [Credits](#credits)
 
 ---
 
@@ -48,7 +49,7 @@ pip install -r requirements.txt
 DEBUG=True
 SECRET_KEY=your_secret
 ALLOWED_HOSTS=localhost,127.0.0.1
-DATABASE_URL=sqlite:///db.sqlite3  # or your PostgreSQL URL
+DATABASE_URL=sqlite:///db.sqlite3  ....
 
 # Run migrations and start server
 python manage.py migrate
@@ -156,9 +157,45 @@ Content-Type: application/json
 - CSS
   - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flionelwise77.github.io%2FPP1-The-Alchemist-Cave%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 
-### Unfixed Bugs
+## 🧠 Agile Development (Backend)
 
-## all bugs were fixed , i have trouble with some CSS bugs but at the end everything is running well.
+We applied the same **Agile methodology** to the backend. Using **GitHub Projects**, we managed features and fixes through **epics**, **user stories**, and links to issues.
+
+### 🧰 Tools Used
+
+- GitHub Projects (Kanban or Team Planning)
+- GitHub Issues
+- Labels: `backend`, `feature`, `bug`, `validation`, etc.
+
+---
+
+## 📁 Epics Overview
+
+- **EP01 - API Authentication & Security**
+- **EP02 - Task API (CRUD & Filtering)**
+- **EP03 - Data Validation & Error Handling**
+- **EP04 - Deployment & CI**
+
+---
+
+## 🧑‍💼 User Stories (Backend API)
+
+1. As a user, I want to register and log in via the API with JWT tokens to securely send requests.
+2. As a user, I want to create, read, update, and delete tasks through the API.
+3. As a user, I want API responses to include validation errors when I send invalid data.
+4. As a user, I want to be forbidden (403) from accessing tasks that are not mine.
+5. As a user, I want the API to prevent creating tasks with past due dates or invalid times.
+6. As a user, I want the API to return formatted task data, including priority and status.
+
+---
+
+## 🐞 Known Bugs (Backend)
+
+7. As a developer, I want the API to accept `00:00` for times so it doesn't reject valid midnight stakes.
+8. As a developer, I want the API to return 404 when a user tries to access another user’s task.
+9. As a developer, I want clearer error messages when token authentication fails.
+
+---
 
 ## 🚀 Deployment
 
