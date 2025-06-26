@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 from .views import root_route, logout_route
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 def root_view(request):
     return JsonResponse({"message": "Welcome to the Harmonize API!"})
@@ -31,6 +32,8 @@ urlpatterns = [
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     path('dj-rest-auth/logout/', logout_route),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/', include('planner.urls')),
     path('accounts/profile/', RedirectView.as_view(url='/api/tasks/', permanent=True)),
     

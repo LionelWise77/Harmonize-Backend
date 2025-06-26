@@ -150,12 +150,28 @@ Content-Type: application/json
 
 ---
 
-### Validator Testing
+## Running Tests for the API
 
-- HTML
-  - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Flionelwise77.github.io%2FPP1-The-Alchemist-Cave%2F)
-- CSS
-  - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flionelwise77.github.io%2FPP1-The-Alchemist-Cave%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+1. **Test Task List**: Verifies that the API correctly returns the list of tasks with a `200 OK` response.
+2. **Test Task Creation**: Verifies that a new task can be created successfully with a `201 Created` response.
+3. **Test Unauthorized Task Creation**: Verifies that an unauthenticated user cannot create a task, returning a `401 Unauthorized` response.
+
+To run the tests:
+
+```bash
+python manage.py test
+
+## test Results
+
+Running tests...
+{'access': 'your_access_token'}
+Fetched tasks: {'count': 0, 'results': []}
+.
+----------------------------------------------------------------------
+Ran 3 tests in 13.796s
+
+OK
+
 
 ## 🧠 Agile Development (Backend)
 
@@ -221,6 +237,8 @@ Special thanks to:
 - The **Slack community** for feedback and motivation
 - The official **Django and DRF documentation** for technical guidance
 - All **project reviewers** who provided constructive feedback
+
+```
 
 ```
 
